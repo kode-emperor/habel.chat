@@ -13,4 +13,12 @@ export class ChatNavigationComponent {
   avatar: string = "assets/pexels-pixabay-415829.jpg";
   avatarStyles = { "w-2": true}
   displayUserName = "Habel Ne";
+  buttonStyles = {
+    size: 'size-8',
+    icon: {
+      size: 'text-xl',
+      color: 'text-neutral-950',
+      weight: 'font-black'
+    }
+  };
 }

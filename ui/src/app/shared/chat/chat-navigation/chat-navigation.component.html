@@ -1,10 +1,14 @@
-<div class="flex flex-row">
-  <button class="size-8 btn btn-circle"><span class="material-symbols-outlined">arrow_back_ios_new</span></button>
+<div class="flex flex-row items-center bg-white">
+  <button class="size-8 mr-2 hover:bg-slate-200 btn-circle"><span class="material-symbols-outlined {{buttonStyles.icon.weight}} {{buttonStyles.icon.color}} {{buttonStyles.icon.size}}">arrow_back_ios_new</span></button>
   <ng-content select="chat-avatar"></ng-content>
   <div class="flex flex-col">
-    <p>{{recipientUser}}</p>
-  <div class="status flex flex-row">
-    <p class="text-zinc-300 text-smgit">Offline 3.40PM</p>
+    <p class="text-slate-800 font-[700]">{{recipientUser}}</p>
+    <div class="status flex flex-row">
+      <p class="text-zinc-300 text-xs">Offline 3.40PM</p>
+    </div>
   </div>
+  <div class="flex">
+    <button class="{{buttonStyles.size}} ml-2 hover:bg-slate-200 btn-circle"><span class="material-symbols-outlined {{buttonStyles.icon.weight}} {{buttonStyles.icon.color}} {{buttonStyles.icon.size}}">videocam</span></button>
+    <button class="{{buttonStyles.size}} mr-2 hover:bg-slate-200 btn-circle"><span class="material-symbols-outlined {{buttonStyles.icon.weight}} {{buttonStyles.icon.color}} {{buttonStyles.icon.size}}">call</span></button>
   </div>
 </div>

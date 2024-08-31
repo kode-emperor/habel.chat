@@ -1,4 +1,11 @@
-<div class="chat-window flex-col bg-slate-50">
-    <chat-main-nav></chat-main-nav>
-    <input type="text" placeholder="new message">
+<div class="container p-4 my-4">
+    <chat-main-nav>
+        <chat-avatar [avatar]="recipientAvatar"></chat-avatar>
+    </chat-main-nav>
+    <div class="container">
+        @for(user of users; track user) {
+            <chat-bubble></chat-bubble>
+        }
+    </div>
+    <input type="text" placeholder="Type here" class="input bg-slate-100 w-full max-w-xs ml-8 my-2" />
 </div>

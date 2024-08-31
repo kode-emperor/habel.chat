@@ -1,4 +1,6 @@
+
 /** @type {import('tailwindcss').Config} */
+//const colors = require("daisyui/src")
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
@@ -11,14 +13,17 @@ module.exports = {
         light: {
           ...require("daisyui/src/theming/themes")['light'],
           "primary": "#fbfcff",
-          "brandgreen": {
-            "500": "#56C288",
-            "400": "#87DBAE",
-            "300": "#C2F0OD7",
-            "200": "#E3FBEE",
-            "100": "#FSFFF9"
-          }
-        }
+        },
+        // "colors": {
+        //   ...colors,
+        //   "--brandgreen": {
+        //     "500": "#56C288",
+        //     "400": "#87DBAE",
+        //     "300": "#C2F0OD7",
+        //     "200": "#E3FBEE",
+        //     "100": "#FSFFF9"
+        //   }
+        // }
       }
     ], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
     darkTheme: "dark", // name of one of the included themes for dark mode

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'chat-avatar',
@@ -8,18 +8,15 @@ import { Component, Input } from '@angular/core';
   templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.css'
 })
-export class AvatarComponent {
-  @Input() avatar = ""
-  @Input() size = "size-16"
-  @Input() styles = {};
-  className = {
-    "ring-brandgreen-500": true, 
-    "ring-offset-base-100": true,
-    "rounded-full": true, 
-    "ring": true, 
-    "ring-offset-2": true,
-    ...this.styles
-  };
+export class AvatarComponent implements OnInit{
+  @Input() avatar = "";
+  @Input() size = "size-16";
+  constructor() {
+    
+  }
 
+  ngOnInit(): void {
+    console.log(this.avatar);
+  }
 
 }
