@@ -34,10 +34,10 @@ export class ChatComponent implements OnInit{
   @ViewChild('messageinput') messageInput!: ElementRef<HTMLInputElement>;
   constructor() {}
   ngOnInit(): void {
-    //this.chatService.setupSocketConnection();
+    this.chatService.setupSocketConnection();
   }
   ngOnDestroy() {
-    //this.chatService.disconnect()
+    this.chatService.disconnect()
   }
   
   onTyping(event: Event): string {
@@ -59,5 +59,6 @@ export class ChatComponent implements OnInit{
     const newUser = {user: "Moses Levi", message: msg, time: timeStr}
     this.myusers.push(newUser)
     this.chatService.onMessage({user: newUser.user, message: newUser.message})
+    this.messageInput.nativeElement.value = "";
   }
 }

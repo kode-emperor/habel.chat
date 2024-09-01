@@ -16,6 +16,7 @@ export class ChatService{
   constructor() { }
   setupSocketConnection() {
     this.socket = io("http://habel.chat.network:3000/")
+    console.log("now lisening for message from server...")
   }
 
   disconnect() {
@@ -29,8 +30,13 @@ export class ChatService{
   }
 
   onMessage(reply: ChatResponse) {
+    console.log(`user: ${reply.user}, message: ${reply.message}`);
     if(this.socket) {
-      this.socket.on('chat:new-message', (res: ChatResponse) => this.socket.emit('chat:new-message', reply))
+      this.socket.on('chat:new-message', (res: ChatResponse) => {
+        console.log("Received new message from server: "+ res);
+        this.socket.emit('chat:new-message', reply);
+        console.log("sending reply "+ reply)
+      })
     } else {
       console.error("Invalid Socket Error: calling socket-service on a disconnected socket")
     }
