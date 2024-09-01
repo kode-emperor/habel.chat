@@ -1,11 +1,17 @@
-<div class="container p-4 my-4">
+<div class="container">
     <chat-main-nav>
-        <chat-avatar [avatar]="recipientAvatar"></chat-avatar>
+        <chat-avatar [avatar]="recipientAvatar" [ngClass]="'p-4'"></chat-avatar>
     </chat-main-nav>
-    <div class="container">
-        @for(user of users; track user) {
-            <chat-bubble></chat-bubble>
+    <div class="container bg-slate-100 p-8">
+        @for(user of myusers; track user; let index = $index) {
+            <chat-bubble message="{{user.message}}" messagetime="{{user.time}}" chatDirection="{{index % 2 == 0 ? 'chat-start': 'chat-end'}}"/>
+        }
+        @if(typing) {
+            <chat-dots></chat-dots>
         }
     </div>
-    <input type="text" placeholder="Type here" class="input bg-slate-100 w-full max-w-xs ml-8 my-2" />
+    <div class="flex ml-8 my-2 px-2">
+        <input ngModel #messageinput type="text" placeholder="Type here" class="input bg-slate-100 w-full max-w-xs" (input)="onTyping($event)" (focusout)="onFocusOut()" />
+        <button class="btn ml-2 bg-success" (click)="sendMessage()"><span class="material-symbols-outlined text-slate-50">send</span></button>
+    </div>
 </div>
