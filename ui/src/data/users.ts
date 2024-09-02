@@ -17,17 +17,17 @@ function randomTimeString() {
 
 export const  users = [
   {
-    user: uuidv4(),
+    id: uuidv4(),
     message: "I am the Way, the Truth, and the Life. No one comes to the Father except through me.",
     time: randomTimeString()
   },
   {
-    user: uuidv4(),
-    message: "I am the Way, the Truth, and the Life. No one comes to the Father except through me.",
+    id: uuidv4(),
+    message: "As the Father has loved me, so have I loved you.",
     time: randomTimeString()
   },
   {
-    user: uuidv4(),
+    id: uuidv4(),
     message: "For what shall it profit a man, if he gain the whole world, and suffer the loss of his soul?",
     time: randomTimeString()
   }

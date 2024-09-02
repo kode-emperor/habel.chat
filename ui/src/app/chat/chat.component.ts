@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { users } from '../../data/users';
 import { ChatBubbleComponent } from '@components/chat/chat-bubble/chat-bubble.component';
 import { ChatDotsComponent } from '@components/chat/chat-dots/chat-dots.component';
-
+import { v4 as uuidv4 } from 'uuid';
 
 const imports = [
   CommonModule, 
@@ -26,6 +26,10 @@ const imports = [
 })
 export class ChatComponent implements OnInit{
   private chatService = inject(ChatService);
+  currentUser = {
+    id: uuidv4(),
+    name: 'Jesus Christ'
+  };
   recipientAvatar: string = "assets/pexels-aog-pixels-263452684-12698462.jpg";
   messages: string[] = [];
   myusers = users;
@@ -35,7 +39,11 @@ export class ChatComponent implements OnInit{
   constructor() {}
   ngOnInit(): void {
     this.chatService.setupSocketConnection();
+    this.currentUser.id = this.myusers[1].id;
+    console.log(this.currentUser.id);
+    console.log(this.myusers[1].id)
   }
+
   ngOnDestroy() {
     this.chatService.disconnect()
   }
@@ -56,9 +64,9 @@ export class ChatComponent implements OnInit{
     const M = d.getMinutes();
     const timeStr = `${H}:${M < 10 ? '0'+M: M}`;
     const msg = this.messageInput.nativeElement.value;
-    const newUser = {user: "Moses Levi", message: msg, time: timeStr}
+    const newUser = {id: this.currentUser.id, name: "Moses Levi", message: msg, time: timeStr}
     this.myusers.push(newUser)
-    this.chatService.onMessage({user: newUser.user, message: newUser.message})
+    this.chatService.onMessage({id: newUser.id, name: newUser.name, message: newUser.message})
     this.messageInput.nativeElement.value = "";
   }
 }

@@ -11,5 +11,8 @@ import { Component, Input } from '@angular/core';
 export class ChatBubbleComponent {
   @Input() messagetime: string = "00:00";
   @Input() message: string = "";
-  @Input() chatDirection = "chat-start"
+  @Input() chatDirection = "chat-start";
+  @Input() bubbleForeground = "text-neutral-950";
+  @Input() bubbleBackground = "bg-slate-50";
+  
 }

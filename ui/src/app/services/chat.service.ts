@@ -4,7 +4,8 @@ import { environment } from '../../environments/environments.environment';
 
 
 interface ChatResponse {
-  user: string;
+  id: string,
+  name: string;
   message: string;
 }
 @Injectable({
@@ -26,11 +27,11 @@ export class ChatService{
   }
 
   onConnect() {
-    this.socket.on('connected', (res:{user: string, message: string}) => console.log(`user ${res.user} connected`))
+    this.socket.on('connected', (res: {id: string, name: string,message: string}) => console.log(`user ${res.id} connected`))
   }
 
   onMessage(reply: ChatResponse) {
-    console.log(`user: ${reply.user}, message: ${reply.message}`);
+    console.log(`user: ${reply.name}, message: ${reply.message}`);
     if(this.socket) {
       this.socket.on('chat:new-message', (res: ChatResponse) => {
         console.log("Received new message from server: "+ res);
