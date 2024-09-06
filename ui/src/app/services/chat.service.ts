@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from "socket.io-client";
 import { environment } from '../../environments/environments.environment';
+import { v4 as uuidv4} from 'uuid';
+import { Observable, BehaviorSubject } from 'rxjs';
 
-
-interface ChatResponse {
+interface ChatMessage {
   id: string,
   name: string;
   message: string;
+  createdAt: Date;
 }
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService{
-  private socket: any;
+  private socket!: Socket;
+  private jwt = uuidv4();
+  private MESSAGE_EVENT = "chat:message";
+  private message$ = new BehaviorSubject<ChatMessage>({ id: "unknown", name: "", message: "", createdAt: new Date()});
 
   constructor() { }
   setupSocketConnection() {
-    this.socket = io("http://habel.chat.network:3000/")
-    console.log("now lisening for message from server...")
+    this.socket = io("http://localhost:3000/chat",
+      {
+      transports: ['websocket'],
+      query: {jwt:  this.jwt}
+    });
+    console.log("now listening for message from server...")
   }
 
   disconnect() {
@@ -27,19 +36,22 @@ export class ChatService{
   }
 
   onConnect() {
-    this.socket.on('connected', (res: {id: string, name: string,message: string}) => console.log(`user ${res.id} connected`))
+    this.socket.on('connect', () => {
+      console.log(`user connected`);
+    })
   }
 
-  onMessage(reply: ChatResponse) {
-    console.log(`user: ${reply.name}, message: ${reply.message}`);
+  OnReceivedMessage() {
+    this.socket.on(this.MESSAGE_EVENT, message => {
+     this.message$.next(message);
+    })
+    return this.message$.asObservable();
+  }
+
+  Send(message: ChatMessage) {
     if(this.socket) {
-      this.socket.on('chat:new-message', (res: ChatResponse) => {
-        console.log("Received new message from server: "+ res);
-        this.socket.emit('chat:new-message', reply);
-        console.log("sending reply "+ reply)
-      })
-    } else {
-      console.error("Invalid Socket Error: calling socket-service on a disconnected socket")
+      this.socket.emit(this.MESSAGE_EVENT, message);
+      console.log(`Sent message [${message}]`)
     }
   }
 

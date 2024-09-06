@@ -1,0 +1,9 @@
+ws:
+  port: 3000,
+  namespaces:
+  - chat
+  - videos
+  - audio
+
+http:
+  port: 3000
