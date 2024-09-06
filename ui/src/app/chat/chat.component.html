@@ -5,14 +5,14 @@
     <div class="container bg-slate-100 p-8">
         @for(user of myusers; track user; let index = $index) {
             @if(user.id == currentUser.id) {
-                <chat-bubble message="{{user.message}}" messagetime="{{user.time}}" 
+                <chat-bubble message="{{user.message}}" messagetime="{{user.createdAt | date:'hh:mm'}}" 
                     chatDirection="{{index % 2 == 0 ? 'chat-start': 'chat-end'}}"
                     bubbleBackground="bg-green-500"
                     bubbleForeground="text-slate-900"
                 />
             }
             @else {
-                <chat-bubble message="{{user.message}}" messagetime="{{user.time}}" 
+                <chat-bubble message="{{user.message}}" messagetime="{{user.createdAt | date:'hh:mm'}}" 
                     chatDirection="{{index % 2 == 0 ? 'chat-start': 'chat-end'}}" 
                 />
             }    

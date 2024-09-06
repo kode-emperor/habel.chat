@@ -42,6 +42,10 @@ export class ChatComponent implements OnInit{
     this.currentUser.id = this.myusers[1].id;
     console.log(this.currentUser.id);
     console.log(this.myusers[1].id)
+    this.chatService.OnReceivedMessage().subscribe( data => {
+      //const {id, message, name, createdAt } = data;
+      this.myusers.push(data);
+    })
   }
 
   ngOnDestroy() {
@@ -54,6 +58,7 @@ export class ChatComponent implements OnInit{
     this.typing = true;
     return inputVal;
   }
+
   onFocusOut() {
     this.typing = false;
   }
@@ -64,9 +69,8 @@ export class ChatComponent implements OnInit{
     const M = d.getMinutes();
     const timeStr = `${H}:${M < 10 ? '0'+M: M}`;
     const msg = this.messageInput.nativeElement.value;
-    const newUser = {id: this.currentUser.id, name: "Moses Levi", message: msg, time: timeStr}
-    this.myusers.push(newUser)
-    this.chatService.onMessage({id: newUser.id, name: newUser.name, message: newUser.message})
+
+    this.chatService.Send({id: this.currentUser.id, name: this.currentUser.name,message: msg, createdAt: new Date()})
     this.messageInput.nativeElement.value = "";
   }
 }
