@@ -10,6 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'chat',
+    title: 'chats',
     component: ChatComponent
   }
 ];

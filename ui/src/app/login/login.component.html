@@ -5,11 +5,11 @@
 
   </div>
 
-  <div class="flex flex-col justify-between border border-solid border-2 border-neutral-500 p-5 mt-10 rounded-md">
+  <div class="flex flex-col justify-between p-5 mt-10 rounded-md w-full max-w-lg min-w-sm">
     <label for="username" class="label">Email</label>
-    <input type="text" placeholder="username" class="input input-bordered my-1">
+    <input type="text" placeholder="username" [ngClass]="css.input">
     <label for="password" class="label">Password</label>
-    <input type="password" placeholder="password" class="input input-bordered my-1 bg">
-    <input type="button" value="login" class="btn btn-bordered mt-5 bg-success text-slate-100 hover:bg-orange-300 hover:text-zinc-600">
+    <input type="password" placeholder="password" [ngClass]="css.input">
+    <input type="button" value="login" class="btn btn-bordered mt-5 bg-brandgreen-500 border-brandgreen-400 text-slate-100 hover:bg-orange-300 hover:text-zinc-600 w-full max-w-lg min-w-sm">
   </div>
 </div>

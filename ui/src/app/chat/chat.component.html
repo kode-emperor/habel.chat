@@ -4,18 +4,20 @@
     </chat-main-nav>
     <div class="container bg-slate-100 p-8">
         @for(user of myusers; track user; let index = $index) {
-            @if(user.id == currentUser.id) {
-                <chat-bubble message="{{user.message}}" messagetime="{{user.createdAt | date:'hh:mm'}}" 
-                    chatDirection="{{'chat-end'}}"
-                    bubbleBackground="bg-green-500"
-                    bubbleForeground="text-slate-900"
-                />
+            @if(user.message) {
+                @if(user.id == currentUser.id) {
+                    <chat-bubble message="{{user.message}}" messagetime="{{user.createdAt | date:'hh:mm'}}" 
+                        chatDirection="{{'chat-end'}}"
+                        bubbleBackground="bg-green-500"
+                        bubbleForeground="text-slate-900"
+                    />
+                }
+                @else {
+                    <chat-bubble message="{{user.message}}" messagetime="{{user.createdAt | date:'hh:mm'}}" 
+                        chatDirection="{{'chat-start'}}" 
+                    />
+                }    
             }
-            @else {
-                <chat-bubble message="{{user.message}}" messagetime="{{user.createdAt | date:'hh:mm'}}" 
-                    chatDirection="{{'chat-start'}}" 
-                />
-            }    
         }
         @if(typing) {
             <chat-dots></chat-dots>

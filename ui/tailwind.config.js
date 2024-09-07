@@ -1,10 +1,33 @@
 
 /** @type {import('tailwindcss').Config} */
-//const colors = require("daisyui/src")
+// tailwind.config.js
+import { colors as defaultColors } from 'tailwindcss/defaultTheme'
+
+
+const colors = {
+  ...defaultColors,
+  ...{
+    "brandgreen": {
+      "800": "#0B2E02",
+      "700": "#104502",
+      "600": "#155A03",
+      "500": "#1F8505",
+      "400": "#79B669",
+      "300": "#BCDBB4",
+      "200": "#B8D6B0",
+      "100": "#DAEDD5"
+    },
+    "brandblack": "#141514",
+    "brandwhite": "#FCFBFA",
+    "brandgray": "#E5E5E5"
+  }
+}
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      "colors": colors,
+    },
   },
   plugins: [require('daisyui')],
   daisyui: {

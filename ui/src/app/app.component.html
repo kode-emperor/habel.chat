@@ -1,10 +1,12 @@
 <main>
-  <div class="flex justify-between border-solid border-b-2 border-slate-100 items-center">
-    <h1 class="p-4  text-2xl lexend-deca-title text-green-500">habel.chat</h1>
-    <div class="flex mr-5">
-      <button class="text-orange-500 mr-3" [routerLink]="['/login']">login</button>
-      <button class="btn bg-success text-zinc-100" [routerLink]="['/chat']">chat</button>
+  <div class="flex border-solid border-b-2 border-slate-100">
+    <div class="flex justify-between items-center w-full">
+      <h1 class="p-4  text-2xl lexend-deca-title text-brandgreen-500" [routerLink]="['/']">habel.chat</h1>
+      <div class="flex mr-5">
+        <button class="text-brandgreen-700 mr-3" [routerLink]="['/login']"><i class="fa-solid fa-right-to-bracket mr-2"></i>login</button>
+        <button class="btn bg-brandgreen-500 hover:bg-brandgreen-300 text-zinc-100 hover:text-brandgreen-800 shadow-sm hover:shadow-brandgreen-200" [routerLink]="['/chat']"><i class="fa-brands fa-rocketchat"></i>chat</button>
+      </div>
     </div>
-  </div>
+    </div>
   <router-outlet/>
 </main>
