@@ -8,7 +8,7 @@ import { time } from 'console';
 //const port = 3000;
 @WebSocketGateway({
   cors: {
-    origin: ["http://192.168.0.18","http://localhost"],
+    origin: ["http://localhost"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
   },
