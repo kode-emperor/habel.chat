@@ -26,25 +26,28 @@ const imports = [
 })
 export class ChatComponent implements OnInit{
   private chatService = inject(ChatService);
-  currentUser = {
-    id: uuidv4(),
-    name: 'Jesus Christ'
-  };
+  currentUser: {id: string, name: string};
   recipientAvatar: string = "assets/pexels-aog-pixels-263452684-12698462.jpg";
   messages: string[] = [];
   myusers = users;
   typing: Boolean = false;
 
   @ViewChild('messageinput') messageInput!: ElementRef<HTMLInputElement>;
-  constructor() {}
+  constructor() {
+    this.currentUser =  {
+      id: uuidv4(),
+      name: 'Jesus Christ'
+    };
+  }
   ngOnInit(): void {
     this.chatService.setupSocketConnection();
     this.currentUser.id = this.myusers[1].id;
     console.log(this.currentUser.id);
     console.log(this.myusers[1].id)
-    this.chatService.OnReceivedMessage().subscribe( data => {
-      //const {id, message, name, createdAt } = data;
-      this.myusers.push(data);
+    this.chatService.OnReceivedMessage().subscribe( ( res )=> {
+      if(!(res.id === this.currentUser.id))  { // dont receive your own messages
+        this.myusers.push(res);
+      }
     })
   }
 
@@ -52,25 +55,27 @@ export class ChatComponent implements OnInit{
     this.chatService.disconnect()
   }
   
-  onTyping(event: Event): string {
-    const inputVal =  (event.target as HTMLInputElement).value;
-    console.log(inputVal);
+  onTyping(event: Event) {
     this.typing = true;
-    return inputVal;
   }
 
   onFocusOut() {
     this.typing = false;
   }
 
-  sendMessage() {
+  sendMessage(event: Event) {
     const d = new Date();
     const H = d.getHours();
     const M = d.getMinutes();
     const timeStr = `${H}:${M < 10 ? '0'+M: M}`;
     const msg = this.messageInput.nativeElement.value;
-
-    this.chatService.Send({id: this.currentUser.id, name: this.currentUser.name,message: msg, createdAt: new Date()})
+    const data = {id: this.currentUser.id, name: this.currentUser.name,message: msg, createdAt: new Date()};
+    this.myusers.push(data);
+    this.chatService.Send(data);
     this.messageInput.nativeElement.value = "";
+  }
+
+  onSendEnter(event: Event) {
+    this.sendMessage(event);
   }
 }

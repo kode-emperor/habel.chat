@@ -24,7 +24,11 @@
         }
     </div>
     <div class="flex ml-8 my-2 px-2">
-        <input ngModel #messageinput type="text" placeholder="Type here" class="input bg-slate-100 w-full max-w-xs" (input)="onTyping($event)" (focusout)="onFocusOut()" />
-        <button class="btn ml-2 bg-success" (click)="sendMessage()"><span class="material-symbols-outlined text-slate-50">send</span></button>
+        <input ngModel #messageinput type="text" placeholder="Type here" 
+        class="input bg-slate-100 w-full max-w-xs" (input)="onTyping($event)" 
+        (focusout)="onFocusOut()" 
+        (keydown.enter)="onSendEnter($event)"
+        />
+        <button class="btn bg-brandgreen-500 text-slate-100 ml-2" (click)="sendMessage($event)"><i class="fa-solid fa-paper-plane"></i></button>
     </div>
 </div>

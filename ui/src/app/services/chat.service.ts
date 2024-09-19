@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from "socket.io-client";
-import { environment } from '../../environments/environments.environment';
+import { environment } from '../../environments/environment';
 import { v4 as uuidv4} from 'uuid';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -21,8 +21,10 @@ export class ChatService{
 
   constructor() { }
   setupSocketConnection() {
-    this.socket = io("http://localhost:3000/chat",
-      {
+    
+    this.socket = io(`${environment.chat.http.url}/chat`,
+    {
+      path: "/socket.io/",
       transports: ['websocket'],
       query: {jwt:  this.jwt}
     });
@@ -42,6 +44,7 @@ export class ChatService{
   }
 
   OnReceivedMessage() {
+    console.log("new message from server")
     this.socket.on(this.MESSAGE_EVENT, message => {
      this.message$.next(message);
     })
@@ -55,4 +58,9 @@ export class ChatService{
     }
   }
 
+  onConnectionError() {
+    this.socket.on('connect_error', (err) => {
+      console.log(`error connection: ${err}`);
+    });
+  }
 }

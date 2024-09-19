@@ -1,1 +1,18 @@
-<p>signup works!</p>
+<section class="grid grid-cols-1 place-items-center">
+  <article class="p-6 mt-20 shadow-md shadow-neutral-200 min-w-sm max-w-lg w-full">
+    <h1 class="text-2xl text-neutral-700 font-extrabold figtree mb-12 mt-4">Create free account</h1>
+    <label class="label figtree-200 font-semibold" for="username">Username</label>
+    <input [ngClass]="css.input" type="text" placeholder="spidermonkey" required/>
+    <label class="label figtree-200 font-semibold" for="email">Email</label>
+    <input [ngClass]="css.input" type="email" placeholder="hab@habel.chat" required/>
+    <label class="label figtree-200 font-medium" for="password">Password</label>
+    <input [ngClass]="css.input" type="password" required/>
+    <ul class="my-4 list-disc">
+      <li class="figtree-200">Password must have at least 8 characters</li>
+      <li class="figtree-200">Must contain a number or a special character</li>
+    </ul>
+    <button class="btn flex w-full bg-brandgreen-500 text-zinc-100 hover:bg-brandgreen-700">Sign up <span class="material-symbols-outlined">arrow_right_alt</span></button>
+
+    <p class="my-4 figtree-400">Already have an account? <span class="figtree-900 text-brand-green-900 "><a href="/login">Sign-in</a></span> instead</p>
+  </article>
+</section>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginStyles } from './login.css';
+import { Forms } from '@shared/forms.css';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,6 +10,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  css: typeof LoginStyles =  LoginStyles;
+  css: typeof Forms =  Forms;
 
 }
