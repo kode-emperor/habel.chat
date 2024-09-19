@@ -4,16 +4,18 @@ import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Server, Socket } from 'socket.io';
 import { time } from 'console';
+import path from 'path';
 
-//const port = 3000;
+const port = 3000; //make server listen on different port from ws
 @WebSocketGateway({
   cors: {
-    origin: ["http://localhost"],
+    origin: '*',
     allowedHeaders: ["my-custom-header"],
     credentials: true
   },
   transports: ['websocket'],
-  namespace: 'chat'
+  namespace: 'chat',
+  path: "/socket.io/"
 })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit{
 
@@ -30,7 +32,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect, On
     //console.log(args);
     if(!this.clients.some(c => c.socket == client)) {
       this.clients.push({id: client.handshake.query.jwt, connected: true, socket: client});
-      //console.log(`New connection from ${client.id}`)
+      console.log(`New connection from ${client.id}`)
     }
     return ({message: "connected to server"})
   }
@@ -58,5 +60,4 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect, On
     return ({event: 'message', data});
   }
 
-  
 }
