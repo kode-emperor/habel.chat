@@ -3,13 +3,7 @@ import { io, Socket } from "socket.io-client";
 import { environment } from '../../environments/environment';
 import { v4 as uuidv4} from 'uuid';
 import { Observable, BehaviorSubject } from 'rxjs';
-
-interface ChatMessage {
-  id: string,
-  name: string;
-  message: string;
-  createdAt: Date;
-}
+import { ChatMessage } from '@shared/types/chat';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +11,7 @@ export class ChatService{
   private socket!: Socket;
   private jwt = uuidv4();
   private MESSAGE_EVENT = "chat:message";
-  private message$ = new BehaviorSubject<ChatMessage>({ id: "unknown", name: "", message: "", createdAt: new Date()});
+  private message$ = new BehaviorSubject<ChatMessage>({ id: "unknown", name: "", message: "", createdAt: new Date(), receivedAt: null});
 
   constructor() { }
   setupSocketConnection() {
@@ -46,6 +40,7 @@ export class ChatService{
   OnReceivedMessage() {
     console.log("new message from server")
     this.socket.on(this.MESSAGE_EVENT, message => {
+      message = {...message, receivedAt: new Date()};
      this.message$.next(message);
     })
     return this.message$.asObservable();

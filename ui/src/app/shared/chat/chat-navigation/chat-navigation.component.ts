@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AvatarComponent } from '@shared/avatar/avatar.component';
 
 @Component({
@@ -9,10 +9,9 @@ import { AvatarComponent } from '@shared/avatar/avatar.component';
   styleUrl: './chat-navigation.component.css'
 })
 export class ChatNavigationComponent {
-  recipientUser: string = "Jesus Christ";
+  @Input({required: true}) user: string = "Jesus Christ";
   avatar: string = "assets/pexels-pixabay-415829.jpg";
   avatarStyles = { "w-2": true}
-  displayUserName = "Habel Ne";
   buttonStyles = {
     size: 'size-8',
     icon: {

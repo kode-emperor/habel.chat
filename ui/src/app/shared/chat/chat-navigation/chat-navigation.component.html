@@ -1,12 +1,16 @@
 <div class="flex flex-row justify-between items-center bg-white px-4">
   <button class="size-8 hover:bg-slate-200 focus:bg-slate-200 btn-circle"><span class="material-symbols-outlined {{buttonStyles.icon.weight}} {{buttonStyles.icon.color}} {{buttonStyles.icon.size}}">arrow_back_ios_new</span></button>
-  <ng-content select="chat-avatar"></ng-content>
-  <div class="flex flex-col">
-    <p class="text-slate-800 font-[700]">{{recipientUser}}</p>
-    <div class="status flex flex-row">
-      <p class="text-green-600  text-[0.7rem]">Online 3.40PM</p>
+  
+  <div class="flex items-center">
+    <ng-content select="chat-avatar"></ng-content>
+    <div class="flex flex-col">
+      <p class="text-slate-800 font-[700]">{{user}}</p>
+      <div class="status flex flex-row">
+        <p class="text-green-600  text-[0.7rem]">Online 3.40PM</p>
+      </div>
     </div>
   </div>
+  
   <div class="flex">
     <button class="{{buttonStyles.size}} ml-2 hover:bg-slate-200 focus:bg-slate-200 btn-circle"><span class="material-symbols-outlined {{buttonStyles.icon.weight}} {{buttonStyles.icon.color}} {{buttonStyles.icon.size}}">videocam</span></button>
     <button class="{{buttonStyles.size}} mr-2 hover:bg-slate-200 focus:bg-slate-200 btn-circle"><span class="material-symbols-outlined {{buttonStyles.icon.weight}} {{buttonStyles.icon.color}} {{buttonStyles.icon.size}}">call</span></button>

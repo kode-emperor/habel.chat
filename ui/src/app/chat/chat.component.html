@@ -1,34 +1,45 @@
 <div class="container">
-    <chat-main-nav>
-        <chat-avatar [avatar]="recipientAvatar" [ngClass]="'p-4'"></chat-avatar>
-    </chat-main-nav>
-    <div class="container bg-slate-100 p-8">
-        @for(user of myusers; track user; let index = $index) {
-            @if(user.message) {
-                @if(user.id == currentUser.id) {
-                    <chat-bubble message="{{user.message}}" messagetime="{{user.createdAt | date:'hh:mm'}}" 
-                        chatDirection="{{'chat-end'}}"
-                        bubbleBackground="bg-green-500"
-                        bubbleForeground="text-slate-900"
-                    />
+    <app-rooms></app-rooms>
+    <div class="container">
+        <chat-main-nav user="{{currentUser.name}}">
+            <chat-avatar [avatar]="recipientAvatar" [ngClass]="'p-4'"></chat-avatar>
+        </chat-main-nav>
+        <div class="container bg-slate-100 p-8 min-h-[85svh]">
+            @for(message of messages; track message;) {
+                @if(message.message) {
+                    @if(message.id == currentUser.id) {
+                        <chat-bubble 
+                            message="{{message.message}}" 
+                            messagetime="{{message.createdAt | date:'hh:mm'}}" 
+                            chatDirection="{{'chat-end'}}"
+                            bubbleBackground="bg-green-500"
+                            bubbleForeground="text-slate-900"
+                        />
+                    }
+                    @else {
+                        <chat-bubble 
+                            message="{{message.message}}" 
+                            messagetime="{{message.createdAt | date:'hh:mm'}}" 
+                            chatDirection="{{'chat-start'}}" 
+                        />
+                    }    
                 }
-                @else {
-                    <chat-bubble message="{{user.message}}" messagetime="{{user.createdAt | date:'hh:mm'}}" 
-                        chatDirection="{{'chat-start'}}" 
-                    />
-                }    
             }
-        }
-        @if(typing) {
-            <chat-dots></chat-dots>
-        }
-    </div>
-    <div class="flex ml-8 my-2 px-2">
-        <input ngModel #messageinput type="text" placeholder="Type here" 
-        class="input bg-slate-100 w-full max-w-xs" (input)="onTyping($event)" 
-        (focusout)="onFocusOut()" 
-        (keydown.enter)="onSendEnter($event)"
-        />
-        <button class="btn bg-brandgreen-500 text-slate-100 ml-2" (click)="sendMessage($event)"><i class="fa-solid fa-paper-plane"></i></button>
+            @if(typing) {
+                <chat-dots></chat-dots>
+            }
+            
+            
+     
+        </div>
+        <div class="flex ml-8 my-2 px-2">
+            <input ngModel #messageinput type="text" placeholder="Type here" 
+            class="input bg-slate-100 w-full max-w-xs" (input)="onTyping($event)" 
+            (focusout)="onFocusOut()" 
+            (keydown.enter)="onSendEnter($event)"
+            />
+            <button class="btn bg-brandgreen-500 text-slate-100 ml-2" (click)="sendMessage($event)"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
     </div>
 </div>
+
