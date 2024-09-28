@@ -1,19 +1,4 @@
-<main class="bg-gray-50">
-  <div class="flex border-solid border-b-2 border-slate-100">
-    <div class="flex justify-between items-center w-full">
-      <h1 class="p-4  ml-[1rem] text-2xl lexend-deca-title text-brandgreen-500" [routerLink]="['/']">habel.chat</h1>
-      <div class="flex items-center mr-[1rem]">
-        @if(isAuthenticated()) {
-          <button class="flex text-brandgreen-700 mr-3" (click)="this.logout()"><span class="material-symbols-outlined mr-2">logout</span><span>logout</span></button>
-        }
-        @else {
-          <button class="flex text-brandgreen-700 mr-3" (click)="this.login()"><span class="material-symbols-outlined mr-2">login</span><span>login</span></button>
-        }
-        <button class="btn bg-brandgreen-500 hover:bg-brandgreen-300 text-zinc-100 hover:text-brandgreen-800 shadow-sm hover:shadow-brandgreen-200" [routerLink]="['/chat']"><i class="fa-brands fa-rocketchat"></i>chat</button>
-      </div>
-    </div>
-    
-    </div>
-    
+<main class="bg-gray-50 w-full">
+  <app-header/>
   <router-outlet/>
 </main>

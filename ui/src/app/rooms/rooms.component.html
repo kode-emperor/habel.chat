@@ -1,6 +1,19 @@
-<section>
-  <input type="">
-  <div class="rooms">
+<section class="py-4 px-8">
+
+  <div class="flex items-center max-w-lg mx-auto focus:border-red-500">   
+    <div class="relative w-full">
+      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <span class="mr-2 text-gray-500 material-symbols-outlined"> groups</span>
+      </div>
+      <input type="text" id="people-search" class="bg-slate-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-green-500 block w-full ps-10 p-2.5" placeholder="Search people ..., groups" required />
+      <button type="button" class="absolute inset-y-0 end-0 flex items-center pe-3">
+        <span class="material-symbols-outlined text-gray-500">search</span>
+      </button>
+    </div>
+    
+  </div>
+
+  <div class="rooms flex flex-col">
     @for(room of rooms; track room) {
       <message-list-item></message-list-item>
     }

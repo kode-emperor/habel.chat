@@ -13,5 +13,5 @@ const imports = [
   styleUrl: './rooms.component.css'
 })
 export class RoomsComponent {
-  rooms: string[] = []
+  rooms: string[] = [ "thuba", "kurtis","kaylee"]
 }

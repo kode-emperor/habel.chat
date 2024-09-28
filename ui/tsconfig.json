@@ -12,7 +12,9 @@
       ],
       "@assets/*": [ "./src/assets/*"],
       "@shared/*": [ "./src/app/shared/*"],
-      "@environments/*": [ "./src/environemnts/*"]
+      "@environments/*": [ "./src/environemnts/*"],
+      "@pipes/*": [ "./src/lib/pipes/*"],
+      "@lib/*": [ "./src/lib/*"],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

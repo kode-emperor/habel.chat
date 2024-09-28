@@ -11,6 +11,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AvatarComponent implements OnInit{
   @Input() avatar = "";
   @Input() size = "size-16";
+  @Input() ringColor = "ring-green-700";
+
   constructor() {
     
   }

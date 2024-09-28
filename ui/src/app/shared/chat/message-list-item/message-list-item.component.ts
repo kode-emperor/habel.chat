@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { AvatarComponent } from "../../avatar/avatar.component";
 import { CommonModule } from '@angular/common';
+import { DateDiffStrPipe } from '@pipes/datediff.pipe';
 
 const imports = [
   AvatarComponent,
-  CommonModule
+  CommonModule,
+  DateDiffStrPipe
 ]
 
 @Component({
@@ -23,7 +25,8 @@ export class MessageListItemComponent {
   } = {
     from: "Moses Levi",
     data: "Hear O Israel, the LORD our God, the LORD is one.",
-    receivedAt: new Date(2024,9,27, 18,20,12),
+    receivedAt: new Date(2024,9,28, 18,20,12),
     avatar: "assets/serene_professiona_elegance.jpeg"
   }
+  now = new Date();
 }

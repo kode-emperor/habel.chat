@@ -7,7 +7,11 @@ export const environment = {
   chat: {
     http: {
       port: 3000,
-      url: "http://habel.chat.network"
+      url: "http://localhost:3000"
     }
+  },
+  auth: {
+    domain: "dev-xh2nav0kf7tg0gkv.us.auth0.com",
+    client_id: "i48otkns24BOvXd7RWlG21Nad5zB8IG1"
   }
 };

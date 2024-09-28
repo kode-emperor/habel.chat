@@ -1,0 +1,7 @@
+.placeholder-search-icon::placeholder {
+  content: "e8b6";
+  position: absolute;
+  right:95%;
+  top:0;
+  color: red;
+}

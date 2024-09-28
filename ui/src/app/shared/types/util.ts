@@ -15,7 +15,7 @@ function daysBetween(earlier: Date, later: Date) {
   return daysDiff;
 }
 
-function dateDiffStr(earlier: Date, later: Date) {
+export function dateDiffStr(earlier: Date, later: Date) {
   const days = later.getDate() - earlier.getDate();
   const hours = later.getHours() - earlier.getHours();
   const minutes = later.getMinutes() - earlier.getMinutes();
